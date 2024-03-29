@@ -1,9 +1,13 @@
 package app;
 
+import entity.map.GameField;
 import entity.organism.animal.predator.Bear;
+import enum_list.EnumList;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Bear.ICON);
+        GameField gameField = new GameField(10, 10);
+        gameField.addOrganism(5);
+        gameField.displayField();
     }
 }

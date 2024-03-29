@@ -1,6 +1,8 @@
 package entity.map;
 
 import entity.organism.Organism;
+import entity.organism.animal.herbivore.Horse;
+import entity.organism.animal.predator.Bear;
 import enum_list.EnumList;
 
 import java.lang.reflect.Type;
@@ -20,11 +22,12 @@ public class GameField {
         this.height = height;
         this.cells = new Cell[width][height];
         initialize(cells);
+
     }
     public void initialize(Cell[][] cells){
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                cells[i][j] = new Cell(new HashMap<EnumList, Set<Organism>>());
+                cells[i][j] = new Cell(new HashMap<>());
             }
         }
     }
@@ -34,18 +37,31 @@ public class GameField {
 
 
         for(int i = 0; i < countOfOrganism; i++) {
-            int x = random.nextInt(0, 100);
-            int y = random.nextInt(0, 20);
+            int x = random.nextInt(width);
+            int y = random.nextInt(height);
             EnumList randomElement = enumLists[random.nextInt(enumLists.length)];
-
             Organism organism = createOrganism(randomElement);
 
             cells[x][y].addOrganism(organism);
         }
     }
-    public Organism createOrganism(EnumList enumList){
-
-        return null;
+    public Organism createOrganism(EnumList enumList) {
+        switch (enumList){
+            case BEAR :
+                return new Bear(EnumList.BEAR);
+            case HORSE:
+                return new Horse(EnumList.HORSE);
+            default:
+            throw new IllegalArgumentException("Unknown type of organism");
+        }
+    }
+    public void displayField(){
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                System.out.print(cells[i][j].display() + " ");
+            }
+            System.out.println();
+        }
     }
 
     public Cell[][] getCells(){
