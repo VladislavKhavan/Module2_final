@@ -21,30 +21,26 @@ public class GameField {
         this.width = width;
         this.height = height;
         this.cells = new Cell[width][height];
-        initialize(cells);
+        initialize();
 
     }
-    public void initialize(Cell[][] cells){
+    public void initialize(){
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 cells[i][j] = new Cell(new HashMap<>());
+                EnumList enumListRandom = getRandomModel();
+                Organism organism = createOrganism(enumListRandom);
+                cells[i][j].addOrganism(organism);
             }
         }
     }
-    public void addOrganism(int countOfOrganism){
+    public EnumList getRandomModel(){
         EnumSet<EnumList> organisms = EnumSet.allOf(EnumList.class);
         EnumList[] enumLists = organisms.toArray(new EnumList[0]);
-
-
-        for(int i = 0; i < countOfOrganism; i++) {
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            EnumList randomElement = enumLists[random.nextInt(enumLists.length)];
-            Organism organism = createOrganism(randomElement);
-
-            cells[x][y].addOrganism(organism);
-        }
+        EnumList randomElement = enumLists[random.nextInt(enumLists.length)];
+        return randomElement;
     }
+
     public Organism createOrganism(EnumList enumList) {
         switch (enumList){
             case BEAR :
