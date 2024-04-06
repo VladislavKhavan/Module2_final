@@ -5,6 +5,7 @@ public enum EnumList {
     HORSE,
     BEAR,
     // DEER, RABBIT, MOUSE, GOAT, SHEEP, BOAR, BUFFALO, DUCK,
-    // WORM, GRASS
+    // WORM,
+    GRASS
 
 }

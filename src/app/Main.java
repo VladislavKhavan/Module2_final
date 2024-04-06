@@ -1,13 +1,28 @@
 package app;
 
 import entity.map.GameField;
+import entity.organism.animal.herbivore.Horse;
 import entity.organism.animal.predator.Bear;
 import enum_list.EnumList;
+import game_simulation.GameSimulation;
 
 public class Main {
     public static void main(String[] args) {
-        GameField gameField = new GameField(10, 10);
-        gameField.initialize();
-        gameField.displayField();
+
+            GameSimulation simulation = new GameSimulation();
+            simulation.startSimulation();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+            simulation.stopSimulation();
+            simulation.getField().print();
+        }
+
+
     }
-}
+
+

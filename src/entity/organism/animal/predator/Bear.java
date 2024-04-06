@@ -1,13 +1,23 @@
 package entity.organism.animal.predator;
 
-import entity.organism.Organism;
+import abstraction.Movable;
+import entity.map.GameField;
 import enum_list.EnumList;
 
-public class Bear extends Predator{
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Bear extends Predator implements Runnable {
     public static final String ICON = "🐻";
-    public Bear(EnumList model) {
-        super(model);
+
+    @Override
+    public String getIcon() {
+        return ICON;
     }
 
-
+    public Bear(EnumList model) {
+        super(model);
+        this.maxStep = 2;
+    }
 }
+
+
