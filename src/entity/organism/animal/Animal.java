@@ -51,14 +51,13 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
         int currentY = this.getY();
 
         int moveX = ThreadLocalRandom.current().nextInt(-maxStep, maxStep + 1);
-        int moveY = ThreadLocalRandom.current().nextInt(maxStep, maxStep + 1);
+        int moveY = ThreadLocalRandom.current().nextInt(-maxStep, maxStep + 1);
 
 
         if (moveX == 0 && moveY == 0) return;
 
         int newX = Math.max(0, Math.min(field.getWidth() - 1, currentX + moveX));
         int newY = Math.max(0, Math.min(field.getHeight() - 1, currentY + moveY));
-
         moveOrganism(this, newX, newY);
         this.setX(newX);
         this.setY(newY);

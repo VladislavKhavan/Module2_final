@@ -12,14 +12,6 @@ public class Main {
             GameSimulation simulation = new GameSimulation();
             simulation.startSimulation();
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-
-            simulation.stopSimulation();
-            simulation.getField().print();
         }
 
 

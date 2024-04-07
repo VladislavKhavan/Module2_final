@@ -19,71 +19,75 @@ public class Cell {
         this.residents = residents;
     }
 
-  public synchronized void addOrganism(Organism organism) {
-      EnumList model = organism.getModel();
-      Set<Organism> organisms = residents.getOrDefault(model, new HashSet<>());
-      organisms.add(organism);
-      residents.put(model, organisms);
-      history.add(organism);
-  }
+    public synchronized void addOrganism(Organism organism) {
+        EnumList model = organism.getModel();
+        Set<Organism> organisms = residents.getOrDefault(model, new HashSet<>());
+        organisms.add(organism);
+        residents.put(model, organisms);
+        history.add(organism);
+    }
 
     public void removeOrganism(Organism organism) {
         EnumList type = organism.getModel();
         Set<Organism> organismsOfType = residents.get(type);
 
-        if (organismsOfType != null) {
-            if (organismsOfType.contains(organism)) {
-                organismsOfType.remove(organism);
-                if (organismsOfType.isEmpty()) {
-                    residents.remove(type);
-                    restoreFromHistory();
+        if (organismsOfType != null && organismsOfType.contains(organism)) {
+            organismsOfType.remove(organism);
+            if (organismsOfType.isEmpty()) {
+                residents.remove(type);
+                if (residents.isEmpty()) {
+                    addOrganism(new Grass(EnumList.GRASS));
                 }
             }
         }
     }
-    public void restoreFromHistory(){
-        for(Organism organism: history){
-            if(!residents.containsKey(organism.getModel())){
+
+    public void restoreFromHistory() {
+        for (Organism organism : history) {
+            if (!residents.containsKey(organism.getModel())) {
                 addOrganism(organism);
                 break;
             }
         }
     }
+    public int countAnimal(){
+        int total = 0;
+            if(residents.containsKey(EnumList.HORSE)){
+                total += residents.get(EnumList.HORSE).size();
+
+        }
+        return total;
+    }
+    public int countGrass(){
+        int totalGrass = 0;
+        for(EnumList type: residents.keySet()){
+            if(type == EnumList.GRASS){
+                totalGrass += residents.get(type).size();
+            }
+        }
+        return totalGrass;
+    }
+
+
     public String display() {
-        if (residents.isEmpty()) {
-            return ".";
-        } else {
-            for (EnumList key : residents.keySet()) {
-                if (key != null) {
-                    switch (key) {
-                        case BEAR:
-                            return Bear.ICON;
-                        case HORSE:
-                            return Horse.ICON;
-                        case GRASS:
-                            return Grass.ICON;
-                    }
+        for (EnumList key : residents.keySet()) {
+            if (key != null) {
+                switch (key) {
+                    case BEAR:
+                        return Bear.ICON;
+                    case HORSE:
+                        return Horse.ICON;
+                    case GRASS:
+                        return Grass.ICON;
                 }
             }
         }
+
         return "?";
     }
-    public String display1() {
-        if (residents.isEmpty()) {
-            return " ";
-        } else {
 
-            StringBuilder sb = new StringBuilder();
-            for (Set<Organism> organisms : residents.values()) {
-                for(Organism organism: organisms) {
-                    sb.append(organism.getIcon());
-                }
-            }
-            return sb.toString();
-        }
+    public Map<EnumList, Set<Organism>> getResidents() {
+        return residents;
     }
-        public Map<EnumList, Set<Organism>> getResidents () {
-            return residents;
-        }
-    }
+}
 

@@ -9,6 +9,7 @@ import enum_list.EnumList;
 
 public abstract class Organism implements Reproducible {
     protected int x;
+    protected int maxAmount;
     protected int y;
 
     public int getX() {

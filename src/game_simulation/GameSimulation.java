@@ -12,15 +12,12 @@ import enum_list.EnumList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class GameSimulation {
     private GameField field;
     private List<Animal> animalList;
-    private ExecutorService executor;
+    private ScheduledExecutorService executor;
 
     public GameField getField() {
         return field;
@@ -33,7 +30,7 @@ public class GameSimulation {
         fillFieldWithGrass();
         randomlyPlaceAnimals();
         field.displayField();
-        executor = Executors.newCachedThreadPool();
+        executor = Executors.newScheduledThreadPool(1);
     }
 
     private void fillFieldWithGrass() {
@@ -82,36 +79,29 @@ public class GameSimulation {
     }
 
     public void startSimulation() {
-        for (Animal animal : animalList) {
-            executor.submit(() -> {
-                while (!Thread.currentThread().isInterrupted()) {
-                    animal.setField(field);
-                    animal.move();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-            });
-        }
+        executor.scheduleAtFixedRate(() ->{
+            for(Animal animal: animalList){
+                animal.setField(field);
+                animal.move();
+            }
+            System.out.println("New field after iteration");
+            field.print();
 
-        executor.shutdown();
+        }, 0, 1, TimeUnit.SECONDS);
+        executor.schedule(this:: stopSimulation, 10, TimeUnit.SECONDS);
     }
 
 
     public void stopSimulation() {
         executor.shutdownNow();
         try {
-            if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
-                List<Runnable> notFinishedTasks = executor.shutdownNow();
+            if(!executor.awaitTermination(1, TimeUnit.SECONDS)){
+                System.out.println("Some tasks are not finished yet");
             }
-            System.out.println("New field after iteration");
-            } catch (InterruptedException e) {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
-
-
 }
 
 

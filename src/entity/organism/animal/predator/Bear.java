@@ -17,6 +17,7 @@ public class Bear extends Predator implements Runnable {
     public Bear(EnumList model) {
         super(model);
         this.maxStep = 2;
+        this.maxAmount = 5;
     }
 }
 
