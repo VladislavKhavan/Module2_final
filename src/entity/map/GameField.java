@@ -46,10 +46,6 @@ public class GameField {
         }
     }
 
-    public boolean isPositionValid(int X, int Y) {
-        return X >= 0 && X < width && Y >= 0 && Y < height;
-    }
-
     public void displayField() {
         for (int i = 0; i < width; i++) {
             StringBuilder sb = new StringBuilder();
@@ -63,31 +59,7 @@ public class GameField {
         }
     }
 
-    public int countBear() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i ,j);
-                totalAmount += cell.countAnimal();
-            }
-        }
-        return totalAmount;
-    }
-    public int countGrass() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i ,j);
-                totalAmount += cell.countGrass();
-            }
-        }
-        return totalAmount;
-    }
-
     public void print() {
-        Cell cell = getCell(0, 0);
-        Cell cell1 = getCell(8, 8);
-        Cell cell2 = getCell(9, 9);
         for (int i = 0; i < width; i++) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < height; j++) {
@@ -95,14 +67,6 @@ public class GameField {
             }
             System.out.println(sb.toString().trim());
         }
-        System.out.println(cell.countAnimal() + " animal");
-        System.out.println(cell1.countAnimal() + " animal");
-        System.out.println(cell2.countAnimal() + " animal");
-        System.out.println(cell.countGrass() + " grass");
-        System.out.println(cell.countGrass() + " grass");
-        System.out.println(cell.countGrass() + " grass");
-        System.out.println(countGrass() + " Grass");
-
     }
 
 }

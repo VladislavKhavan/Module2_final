@@ -17,6 +17,7 @@ public class Horse extends Herbivore implements Runnable {
     public Horse(EnumList model) {
         super(model);
         this.maxStep = 4;
-        this.maxAmount = 20;
+        this.cellAmount = 20;
+        this.weight = 400;
     }
 }

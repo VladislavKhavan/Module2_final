@@ -66,6 +66,7 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             move();
+            eat();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -74,13 +75,8 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
             }
         }
     }
-
-
     public Organism reproduce() {
         return null;
-    }
-
-    public void eat() {
     }
 
 }

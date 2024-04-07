@@ -83,6 +83,7 @@ public class GameSimulation {
             for(Animal animal: animalList){
                 animal.setField(field);
                 animal.move();
+                animal.eat();
             }
             System.out.println("New field after iteration");
             field.print();
