@@ -52,7 +52,7 @@ public class GameSimulation {
         EnumList[] types = EnumList.values();
         Organism organism;
 
-        for (int i = 0; i < field.getWidth() * field.getHeight(); i++) {
+        for (int i = 0; i < field.getWidth() * field.getHeight() * 2; i++) {
             EnumList randomType = types[ThreadLocalRandom.current().nextInt(types.length)];
             int x, y;
             Cell cell;
@@ -61,7 +61,7 @@ public class GameSimulation {
                 x = ThreadLocalRandom.current().nextInt(field.getWidth());
                 y = ThreadLocalRandom.current().nextInt(field.getHeight());
                 cell = field.getCell(x, y);
-            } while (!(cell.getResidents().size() == 1 && cell.getResidents().containsKey(EnumList.GRASS)));
+            } while (!(cell.getResidents().containsKey(EnumList.GRASS)));
             if (randomType == EnumList.BEAR) {
                 organism = new Bear(EnumList.BEAR);
             } else if (randomType == EnumList.HORSE) {

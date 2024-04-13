@@ -109,6 +109,8 @@ public class GameField {
     }
     public void print() {
 
+
+
         for (int i = 0; i < height; i++) {
             StringBuilder sb = new StringBuilder();
             System.out.print(i + " ");
@@ -117,5 +119,10 @@ public class GameField {
             }
             System.out.println(sb.toString().trim());
         }
+
+        System.out.println(countHorse() + " total number of horses");
+        System.out.println(countBear() + " total number of bears");
+        System.out.println(countGrass() + " total number of grass");
+
     }
 }

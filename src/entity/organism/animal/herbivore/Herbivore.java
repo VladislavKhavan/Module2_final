@@ -1,16 +1,12 @@
 package entity.organism.animal.herbivore;
 
-import abstraction.Reproducible;
 import entity.map.Cell;
 import entity.organism.Organism;
 import entity.organism.animal.Animal;
-import enum_list.EnumHerbivore;
 import enum_list.EnumList;
-import enum_list.EnumPredator;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Semaphore;
 
 public abstract class Herbivore extends Animal {
     public Herbivore(EnumList model) {

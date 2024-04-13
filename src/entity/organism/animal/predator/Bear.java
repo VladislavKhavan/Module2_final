@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Predator implements Runnable {
     public static final String ICON = "🐻";
-    public static final int PROP_HORSE = 40;
+    public static final int PROP_HORSE = 70;
     public static final int PROP_SHEEP = 70;
 
 
