@@ -1,7 +1,8 @@
 package abstraction;
 
 import entity.organism.Organism;
+import entity.organism.animal.Animal;
 
 public interface Reproducible {
-    Organism reproduce();
+    void reproduce(Animal animal);
 }

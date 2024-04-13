@@ -7,9 +7,13 @@ import entity.organism.animal.herbivore.Horse;
 import entity.organism.animal.predator.Bear;
 import enum_list.EnumList;
 
-public abstract class Organism implements Reproducible {
+public abstract class Organism {
     protected int x;
     protected int cellAmount;
+
+    public int getWeight() {
+        return weight;
+    }
     protected int weight;
     protected int y;
 

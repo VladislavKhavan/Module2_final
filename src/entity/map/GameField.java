@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class GameField {
     private int width;
     private int height;
@@ -46,6 +47,54 @@ public class GameField {
         }
     }
 
+    public int countHorse() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countHorse();
+            }
+        }
+        return totalAmount;
+    }
+
+    public int countBear() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countBear();
+            }
+        }
+        return totalAmount;
+    }
+
+    public int countSheep() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countSheep();
+            }
+        }
+        return totalAmount;
+    }
+
+    public int countGrass() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countGrass();
+            }
+        }
+        return totalAmount;
+    }
+
+    public int countAnimalInCell(int x, int y, EnumList AnimalType) {
+        return cells[x][y].countAnimalByType(AnimalType);
+    }
+
     public void displayField() {
         for (int i = 0; i < width; i++) {
             StringBuilder sb = new StringBuilder();
@@ -58,15 +107,15 @@ public class GameField {
             System.out.println(sb.toString());
         }
     }
-
     public void print() {
-        for (int i = 0; i < width; i++) {
+
+        for (int i = 0; i < height; i++) {
             StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < height; j++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < width; j++) {
                 sb.append(cells[i][j].display()).append(" ");
             }
             System.out.println(sb.toString().trim());
         }
     }
-
 }

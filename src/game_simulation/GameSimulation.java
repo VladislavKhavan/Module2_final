@@ -5,7 +5,9 @@ import entity.map.GameField;
 import entity.organism.Organism;
 import entity.organism.animal.Animal;
 import entity.organism.animal.herbivore.Horse;
+import entity.organism.animal.herbivore.Sheep;
 import entity.organism.animal.predator.Bear;
+import entity.organism.animal.predator.Wolf;
 import entity.organism.plant.Grass;
 import enum_list.EnumList;
 
@@ -16,7 +18,7 @@ import java.util.concurrent.*;
 
 public class GameSimulation {
     private GameField field;
-    private List<Animal> animalList;
+    private static CopyOnWriteArrayList<Animal> animalList;
     private ScheduledExecutorService executor;
 
     public GameField getField() {
@@ -26,13 +28,15 @@ public class GameSimulation {
     public GameSimulation() {
         field = new GameField(10, 10);
         field.initialize();
-        animalList = new ArrayList<>();
+        animalList = new CopyOnWriteArrayList<>();
         fillFieldWithGrass();
         randomlyPlaceAnimals();
         field.displayField();
         executor = Executors.newScheduledThreadPool(1);
     }
-
+    public static void removeAnimal(Animal animal) {
+        animalList.remove(animal);
+    }
     private void fillFieldWithGrass() {
         for (int x = 0; x < field.getWidth(); x++) {
             for (int y = 0; y < field.getHeight(); y++) {
@@ -43,7 +47,6 @@ public class GameSimulation {
             }
         }
     }
-
 
     private void randomlyPlaceAnimals() {
         EnumList[] types = EnumList.values();
@@ -63,6 +66,10 @@ public class GameSimulation {
                 organism = new Bear(EnumList.BEAR);
             } else if (randomType == EnumList.HORSE) {
                 organism = new Horse(EnumList.HORSE);
+            } else if (randomType == EnumList.WOLF) {
+                organism = new Wolf(EnumList.WOLF);
+            } else if (randomType == EnumList.SHEEP) {
+                organism = new Sheep(EnumList.SHEEP);
             } else {
                 continue;
             }
@@ -79,24 +86,26 @@ public class GameSimulation {
     }
 
     public void startSimulation() {
-        executor.scheduleAtFixedRate(() ->{
-            for(Animal animal: animalList){
+        executor.scheduleAtFixedRate(() -> {
+            for (Animal animal : animalList) {
                 animal.setField(field);
                 animal.move();
                 animal.eat();
+                animal.reproduce(animal);
+
             }
             System.out.println("New field after iteration");
             field.print();
 
         }, 0, 1, TimeUnit.SECONDS);
-        executor.schedule(this:: stopSimulation, 10, TimeUnit.SECONDS);
+        executor.schedule(this::stopSimulation, 10, TimeUnit.SECONDS);
     }
 
 
     public void stopSimulation() {
         executor.shutdownNow();
         try {
-            if(!executor.awaitTermination(1, TimeUnit.SECONDS)){
+            if (!executor.awaitTermination(1, TimeUnit.SECONDS)) {
                 System.out.println("Some tasks are not finished yet");
             }
         } catch (InterruptedException e) {
