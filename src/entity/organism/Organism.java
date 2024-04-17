@@ -11,10 +11,10 @@ public abstract class Organism {
     protected int x;
     protected int cellAmount;
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
-    protected int weight;
+    protected float weight;
     protected int y;
 
     public int getX() {

@@ -86,6 +86,12 @@ public class GameSimulation {
                 organism = new Fox(EnumList.FOX);
             } else if (randomType == EnumList.EAGLE) {
                 organism = new Eagle(EnumList.EAGLE);
+            } else if (randomType == EnumList.GOAT) {
+                organism = new Goat(EnumList.GOAT);
+            } else if (randomType == EnumList.BUFFALO) {
+                organism = new Buffalo(EnumList.BUFFALO);
+            } else if (randomType == EnumList.DEER) {
+                organism = new Deer(EnumList.DEER);
             } else {
                 continue;
             }

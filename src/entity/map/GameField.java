@@ -39,59 +39,17 @@ public class GameField {
         }
     }
 
-    public int countHorse() {
+    public int countAll() {
         int totalAmount = 0;
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Cell cell = getCell(i, j);
-                totalAmount += cell.countAnimalByType(EnumList.HORSE);
+                totalAmount += cell.countAllAnimals();
             }
         }
         return totalAmount;
     }
 
-    public int countBear() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i, j);
-                totalAmount += cell.countAnimalByType(EnumList.BEAR);
-            }
-        }
-        return totalAmount;
-    }
-
-    public int countSheep() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i, j);
-                totalAmount += cell.countAnimalByType(EnumList.SHEEP);
-            }
-        }
-        return totalAmount;
-    }
-    public int countBoa() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i, j);
-                totalAmount += cell.countAnimalByType(EnumList.BOA);
-            }
-        }
-        return totalAmount;
-    }
-
-    public int countWolf() {
-        int totalAmount = 0;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Cell cell = getCell(i, j);
-                totalAmount += cell.countAnimalByType(EnumList.WOLF);
-            }
-        }
-        return totalAmount;
-    }
 
     public int countGrass() {
         int totalAmount = 0;
@@ -107,10 +65,8 @@ public class GameField {
     public int countAnimalInCell(int x, int y, EnumList AnimalType) {
         return cells[x][y].countAnimalByType(AnimalType);
     }
+
     public void print() {
-
-
-
         for (int i = 0; i < height; i++) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < width; j++) {
@@ -118,15 +74,7 @@ public class GameField {
             }
             System.out.println(sb.toString().trim());
         }
-
-        System.out.println(countHorse() + " total number of horses");
-        System.out.println(countBear() + " total number of bears");
         System.out.println(countGrass() + " total number of grass");
-
-        System.out.println(countSheep() + " total number of sheeps");
-        System.out.println(countWolf() + " total number of wolfs");
-        System.out.println(countBoa() + " total number of boas");
-
-
+        System.out.println(countAll() + " total number of all animals");
     }
 }

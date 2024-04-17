@@ -9,10 +9,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Wolf extends Predator implements Runnable {
     public static final String ICON = "\uD83D\uDC3A";
-    private static final int PROP_HORSE = 100;
-    private static final int PROP_SHEEP = 70;
-    private static int food = 0;
-
+    private static float food = 0;
+    public static final int PROP_HORSE = 10;
+    public static final int PROP_SHEEP = 70;
+    public static final int PROP_DEER = 15;
+    public static final int PROP_RABBIT = 60;
+    public static final int PROP_MOUSE = 80;
+    public static final int PROP_GOAT = 60;
+    public static final int PROP_BOAR = 15;
+    public static final int PROP_BUFFALO = 10;
+    public static final int PROP_DUCK = 40;
 
     @Override
     public String getIcon() {
@@ -25,28 +31,41 @@ public class Wolf extends Predator implements Runnable {
         if (food <= FULL_EAT) {
             if (number <= PROP_HORSE && org.getModel() == EnumList.HORSE) {
                 food += org.getWeight();
-
-                System.out.println(number +  " first number");
-
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_SHEEP && org.getModel() == EnumList.SHEEP){
+            } else if (number <= PROP_DEER && org.getModel() == EnumList.DEER) {
                 food += org.getWeight();
-
-                System.out.println(number + " second number");
-
+                removeFromCell(org, cell);
+            } else if (number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_GOAT && org.getModel() == EnumList.GOAT) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_BOAR && org.getModel() == EnumList.BOAR) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_BUFFALO && org.getModel() == EnumList.BUFFALO) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_SHEEP && org.getModel() == EnumList.SHEEP) {
+                food += org.getWeight();
                 removeFromCell(org, cell);
             }
         }
-
     }
 
     public Wolf(EnumList model) {
         super(model);
         this.maxStep = 3;
         this.cellAmount = 30;
-        this.weight = 120;
-        this.FULL_EAT = 250;
+        this.weight = 50;
+        this.FULL_EAT = 8;
     }
 
     @Override

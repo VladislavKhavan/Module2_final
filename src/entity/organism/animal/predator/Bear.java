@@ -13,8 +13,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Predator implements Runnable {
     public static final String ICON = "🐻";
+    public static final int PROP_BOA = 80;
     public static final int PROP_HORSE = 40;
+    public static final int PROP_DEER = 80;
+    public static final int PROP_RABBIT = 80;
+    public static final int PROP_MOUSE = 90;
+    public static final int PROP_GOAT = 70;
     public static final int PROP_SHEEP = 70;
+    public static final int PROP_DUCK = 10;
+    public static final int PROP_BOAR = 50;
+    public static final int PROP_BUFFALO = 20;
+    private static float food = 0;
 
 
     @Override
@@ -29,16 +38,33 @@ public class Bear extends Predator implements Runnable {
 
     public void eat(Organism org, Cell cell) {
         int number = ThreadLocalRandom.current().nextInt(0, 101);
-        int food = 0;
         if (food <= FULL_EAT) {
             if (number <= PROP_HORSE && org.getModel() == EnumList.HORSE) {
                 food += org.getWeight();
-                System.out.println(food + " the horse was eaten");
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_SHEEP && org.getModel() == EnumList.SHEEP){
+            } else if (number <= PROP_BOA && org.getModel() == EnumList.BOA) {
                 food += org.getWeight();
-                System.out.println(food + " the sheep was eaten");
+                removeFromCell(org, cell);
+            } else if (number <= PROP_DEER && org.getModel() == EnumList.DEER) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_GOAT && org.getModel() == EnumList.GOAT) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_BOAR && org.getModel() == EnumList.BOAR) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_BUFFALO && org.getModel() == EnumList.BUFFALO) {
+                food += org.getWeight();
                 removeFromCell(org, cell);
             }
         }

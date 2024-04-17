@@ -8,7 +8,7 @@ import enum_list.EnumList;
 
 public class Rabbit extends Herbivore implements Runnable {
     public static final String ICON = "\uD83D\uDC07";
-    private static int food = 0;
+    private static float food = 0;
 
     @Override
     public void eat(Organism organism, Cell cell){
@@ -16,7 +16,6 @@ public class Rabbit extends Herbivore implements Runnable {
             food += Grass.weight;
             removeFromCell(organism, cell);
         }
-
     }
 
     @Override
@@ -26,10 +25,10 @@ public class Rabbit extends Herbivore implements Runnable {
 
     public Rabbit(EnumList model) {
         super(model);
-        this.maxStep = 4;
-        this.cellAmount = 140;
-        this.weight = 15;
-        this.FULL_EAT = 15;
+        this.maxStep = 2;
+        this.cellAmount = 150;
+        this.weight = 2;
+        this.FULL_EAT = 0.45F;
     }
 
     @Override

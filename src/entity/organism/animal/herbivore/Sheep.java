@@ -8,7 +8,7 @@ import enum_list.EnumList;
 
 public class Sheep extends Herbivore implements Runnable {
     public static final String ICON = "\uD83D\uDC11";
-    private static int food = 0;
+    private static float food = 0;
 
     @Override
     public void eat(Organism organism, Cell cell){
@@ -26,9 +26,9 @@ public class Sheep extends Herbivore implements Runnable {
 
     public Sheep(EnumList model) {
         super(model);
-        this.maxStep = 4;
+        this.maxStep = 3;
         this.cellAmount = 140;
-        this.weight = 15;
+        this.weight = 70;
         this.FULL_EAT = 15;
     }
 

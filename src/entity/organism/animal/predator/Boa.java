@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Boa extends Predator implements Runnable {
     public static final String ICON = "\uD83D\uDC0D";
-    private static int food = 0;
+    private static float food = 0;
     public static final int PROP_FOX = 15;
     public static final int PROP_RABBIT = 20;
     public static final int PROP_MOUSE = 40;

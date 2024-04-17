@@ -71,6 +71,7 @@ public class Cell {
         }
         return null;
     }
+
     public Animal findHerbivoreInCell() {
         synchronized (this) {
             for (EnumList type : residents.keySet()) {
@@ -116,6 +117,15 @@ public class Cell {
         }
         return totalGrass;
     }
+
+    public int countAllAnimals() {
+        int total = 0;
+        for (Set<Organism> animalList : residents.values()) {
+            total += animalList.size();
+        }
+        return total;
+    }
+
     public String display() {
         List<String> icons = new ArrayList<>();
         for (EnumList key : residents.keySet()) {
@@ -149,6 +159,12 @@ public class Cell {
                         icons.add(Eagle.ICON);
                     case BOAR:
                         icons.add(Boar.ICON);
+                    case DEER:
+                        icons.add(Deer.ICON);
+                    case BUFFALO:
+                        icons.add(Buffalo.ICON);
+                    case GOAT:
+                        icons.add(Goat.ICON);
                 }
             }
         }
@@ -163,13 +179,16 @@ public class Cell {
     private boolean isPredatorType(EnumList type) {
         return type.isPredator();
     }
-    private boolean isVictimType(EnumList type){
+
+    private boolean isVictimType(EnumList type) {
         return type.isVictimType();
     }
-    private boolean isHerbivoreType(EnumList type){
+
+    private boolean isHerbivoreType(EnumList type) {
         return type.isHerbivoreType();
     }
-    private boolean isGrassType(EnumList type){
+
+    private boolean isGrassType(EnumList type) {
         return type == EnumList.GRASS;
     }
 

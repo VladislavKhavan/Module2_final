@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal extends Organism implements Movable, Reproducible, Eatable, Runnable {
     protected int maxStep;
-    protected int FULL_EAT;
+    protected float FULL_EAT;
     protected GameField field;
 
     public abstract Animal createNewAnimal();

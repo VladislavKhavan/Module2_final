@@ -4,6 +4,7 @@ import entity.map.Cell;
 import entity.organism.Organism;
 import entity.organism.animal.Animal;
 import enum_list.EnumList;
+import game_simulation.GameSimulation;
 
 import java.util.Map;
 import java.util.Set;
@@ -30,5 +31,8 @@ public abstract class Herbivore extends Animal {
     protected void removeFromCell(Organism organism, Cell cell) {
         cell.removeOrganism(organism);
     }
-
+    protected void removeFromCellA(Organism organism, Cell cell){
+        cell.removeOrganism(organism);
+        GameSimulation.removeAnimal((Animal) organism);
+    }
 }

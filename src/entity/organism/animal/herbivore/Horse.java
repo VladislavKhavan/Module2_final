@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Horse extends Herbivore implements Runnable {
     public static final String ICON = "🐎";
-    private static int food = 0;
+    private static float food = 0;
 
     @Override
     public void eat(Organism organism, Cell cell){
@@ -30,7 +30,7 @@ public class Horse extends Herbivore implements Runnable {
         super(model);
         this.maxStep = 4;
         this.cellAmount = 20;
-        this.weight = 200;
+        this.weight = 400;
         this.FULL_EAT = 60;
     }
 
