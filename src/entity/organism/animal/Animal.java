@@ -6,8 +6,6 @@ import abstraction.Reproducible;
 import entity.map.Cell;
 import entity.map.GameField;
 import entity.organism.Organism;
-import entity.organism.animal.predator.Bear;
-import entity.organism.plant.Grass;
 import enum_list.EnumList;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,6 +14,10 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
     protected int maxStep;
     protected int FULL_EAT;
     protected GameField field;
+
+    public abstract Animal createNewAnimal();
+
+    public abstract void eat(Organism herbivore, Cell cell);
 
     public void setField(GameField field) {
         this.field = field;
@@ -45,7 +47,6 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
         animal.setY(newY);
     }
 
-
     public void move() {
         int currentX = this.getX();
         int currentY = this.getY();
@@ -61,14 +62,24 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
             moveOrganism(this, newX, newY);
             this.setX(newX);
             this.setY(newY);
+            this.eat();
+            this.reproduce(this);
         }
     }
     public void reproduce(Animal animal){
+        int currentX = this.getX();
+        int currentY = this.getY();
 
+        Cell cell = field.getCell(currentX, currentY);
+        if(cell.countAnimalByType(this.getModel()) > 1){
+            Animal newAnimal = this.createNewAnimal();
+            cell.addOrganism(newAnimal);
+        }
     }
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             try {
+                this.move();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

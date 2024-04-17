@@ -1,16 +1,13 @@
 package entity.organism.animal.herbivore;
 
 import entity.map.Cell;
-import entity.map.GameField;
 import entity.organism.Organism;
 import entity.organism.animal.Animal;
 import entity.organism.plant.Grass;
 import enum_list.EnumList;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-public class Horse extends Herbivore implements Runnable {
-    public static final String ICON = "🐎";
+public class Rabbit extends Herbivore implements Runnable {
+    public static final String ICON = "\uD83D\uDC07";
     private static int food = 0;
 
     @Override
@@ -19,6 +16,7 @@ public class Horse extends Herbivore implements Runnable {
             food += Grass.weight;
             removeFromCell(organism, cell);
         }
+
     }
 
     @Override
@@ -26,16 +24,16 @@ public class Horse extends Herbivore implements Runnable {
         return ICON;
     }
 
-    public Horse(EnumList model) {
+    public Rabbit(EnumList model) {
         super(model);
         this.maxStep = 4;
-        this.cellAmount = 20;
-        this.weight = 200;
-        this.FULL_EAT = 60;
+        this.cellAmount = 140;
+        this.weight = 15;
+        this.FULL_EAT = 15;
     }
 
     @Override
     public Animal createNewAnimal() {
-        return new Horse(EnumList.HORSE);
+        return new Rabbit(EnumList.RABBIT);
     }
 }

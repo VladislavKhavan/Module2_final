@@ -1,17 +1,9 @@
 package entity.map;
 
-import entity.organism.Organism;
-import entity.organism.animal.Animal;
-import entity.organism.animal.herbivore.Horse;
-import entity.organism.animal.predator.Bear;
-import entity.organism.plant.Grass;
 import enum_list.EnumList;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class GameField {
@@ -42,7 +34,7 @@ public class GameField {
     public void initialize() {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                this.cells[i][j] = new Cell(new HashMap<>());
+                this.cells[i][j] = new Cell(new ConcurrentHashMap<>());
             }
         }
     }
@@ -52,7 +44,7 @@ public class GameField {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Cell cell = getCell(i, j);
-                totalAmount += cell.countHorse();
+                totalAmount += cell.countAnimalByType(EnumList.HORSE);
             }
         }
         return totalAmount;
@@ -63,7 +55,7 @@ public class GameField {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Cell cell = getCell(i, j);
-                totalAmount += cell.countBear();
+                totalAmount += cell.countAnimalByType(EnumList.BEAR);
             }
         }
         return totalAmount;
@@ -74,7 +66,28 @@ public class GameField {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 Cell cell = getCell(i, j);
-                totalAmount += cell.countSheep();
+                totalAmount += cell.countAnimalByType(EnumList.SHEEP);
+            }
+        }
+        return totalAmount;
+    }
+    public int countBoa() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countAnimalByType(EnumList.BOA);
+            }
+        }
+        return totalAmount;
+    }
+
+    public int countWolf() {
+        int totalAmount = 0;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Cell cell = getCell(i, j);
+                totalAmount += cell.countAnimalByType(EnumList.WOLF);
             }
         }
         return totalAmount;
@@ -94,26 +107,12 @@ public class GameField {
     public int countAnimalInCell(int x, int y, EnumList AnimalType) {
         return cells[x][y].countAnimalByType(AnimalType);
     }
-
-    public void displayField() {
-        for (int i = 0; i < width; i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < height; j++) {
-                sb.append(cells[i][j].display()).append(" ");
-            }
-            if (sb.length() > 0) {
-                sb.setLength(sb.length() - 1);
-            }
-            System.out.println(sb.toString());
-        }
-    }
     public void print() {
 
 
 
         for (int i = 0; i < height; i++) {
             StringBuilder sb = new StringBuilder();
-            System.out.print(i + " ");
             for (int j = 0; j < width; j++) {
                 sb.append(cells[i][j].display()).append(" ");
             }
@@ -123,6 +122,11 @@ public class GameField {
         System.out.println(countHorse() + " total number of horses");
         System.out.println(countBear() + " total number of bears");
         System.out.println(countGrass() + " total number of grass");
+
+        System.out.println(countSheep() + " total number of sheeps");
+        System.out.println(countWolf() + " total number of wolfs");
+        System.out.println(countBoa() + " total number of boas");
+
 
     }
 }

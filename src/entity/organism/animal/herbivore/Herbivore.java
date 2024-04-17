@@ -19,22 +19,16 @@ public abstract class Herbivore extends Animal {
 
         Cell cell = field.getCell(currentX, currentY);
         Map<EnumList, Set<Organism>> residents = cell.getResidents();
-        Animal herbivore = (Animal) cell.findHerbivoreoinCell(residents);
+        Animal herbivore = (Animal) cell.findHerbivoreInCell();
         Organism organism = cell.findGrassinCell(residents);
         if (herbivore != null && organism != null) {
-            switch (herbivore.getModel()) {
-                case HORSE:
-                    Horse horse = (Horse) herbivore;
-                    horse.eat(organism);
-                    break;
-                case SHEEP:
-                    Sheep sheep = (Sheep) herbivore;
-                    sheep.eat(organism);
-                    break;
-            }
-            cell.removeOrganism(organism);
+            herbivore.eat(organism, cell);
+
         }
     }
 
+    protected void removeFromCell(Organism organism, Cell cell) {
+        cell.removeOrganism(organism);
+    }
 
 }

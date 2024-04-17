@@ -9,7 +9,6 @@ import game_simulation.GameSimulation;
 import java.util.Map;
 import java.util.Set;
 
-
 public abstract class Predator extends Animal {
     public Predator(EnumList model) {
         super(model);
@@ -25,27 +24,13 @@ public abstract class Predator extends Animal {
         int currentY = this.getY();
         Cell cell = field.getCell(currentX, currentY);
         Map<EnumList, Set<Organism>> residents = cell.getResidents();
-        Animal predator1 = cell.findPredatorInCell(residents);
-        Organism herbivore = cell.findHerbivoreoinCell(residents);
-        if (predator1 != null && herbivore != null) {
-            switch (predator1.getModel()) {
-                case BEAR:
-                    Bear predator = (Bear) predator1;
-                    predator.eat(herbivore, cell);
-                    break;
-                case WOLF:
-                    Wolf predator2 = (Wolf) predator1;
-                    predator2.eat(herbivore, cell);
-                    break;
-                default:
-                    break;
-            }
+
+        Animal predator = cell.findPredatorInCell();
+        Animal victim = cell.findVictimInCell();
+        if (predator != null && victim != null) {
+            predator.eat(victim, cell);
         }
 
     }
 
-
 }
-
-
-

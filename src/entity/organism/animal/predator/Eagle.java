@@ -7,11 +7,11 @@ import enum_list.EnumList;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Wolf extends Predator implements Runnable {
-    public static final String ICON = "\uD83D\uDC3A";
-    private static final int PROP_HORSE = 100;
-    private static final int PROP_SHEEP = 70;
+public class Eagle extends Predator implements Runnable {
+    public static final String ICON = "\uD83E\uDD85";
     private static int food = 0;
+    public static final int PROP_HORSE = 40;
+    public static final int PROP_SHEEP = 70;
 
 
     @Override
@@ -25,33 +25,27 @@ public class Wolf extends Predator implements Runnable {
         if (food <= FULL_EAT) {
             if (number <= PROP_HORSE && org.getModel() == EnumList.HORSE) {
                 food += org.getWeight();
-
-                System.out.println(number +  " first number");
-
                 removeFromCell(org, cell);
             }
             else if(number <= PROP_SHEEP && org.getModel() == EnumList.SHEEP){
                 food += org.getWeight();
-
-                System.out.println(number + " second number");
-
                 removeFromCell(org, cell);
             }
         }
-
     }
 
-    public Wolf(EnumList model) {
+    public Eagle(EnumList model) {
         super(model);
         this.maxStep = 3;
-        this.cellAmount = 30;
-        this.weight = 120;
-        this.FULL_EAT = 250;
+        this.cellAmount = 20;
+        this.weight = 6;
+        this.FULL_EAT = 1;
     }
 
     @Override
     public Animal createNewAnimal() {
-        return new Wolf(EnumList.WOLF);
+        return new Eagle(EnumList.EAGLE);
     }
 }
+
 

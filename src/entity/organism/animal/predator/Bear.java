@@ -4,6 +4,7 @@ import abstraction.Movable;
 import entity.map.Cell;
 import entity.map.GameField;
 import entity.organism.Organism;
+import entity.organism.animal.Animal;
 import entity.organism.animal.herbivore.Horse;
 import enum_list.EnumList;
 
@@ -12,13 +13,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bear extends Predator implements Runnable {
     public static final String ICON = "🐻";
-    public static final int PROP_HORSE = 70;
+    public static final int PROP_HORSE = 40;
     public static final int PROP_SHEEP = 70;
 
 
     @Override
     public String getIcon() {
         return ICON;
+    }
+
+    @Override
+    public Animal createNewAnimal() {
+        return new Bear(EnumList.BEAR);
     }
 
     public void eat(Organism org, Cell cell) {
