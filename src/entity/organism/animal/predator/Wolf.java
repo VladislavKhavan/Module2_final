@@ -1,30 +1,24 @@
 package entity.organism.animal.predator;
 
-import abstraction.Movable;
 import entity.map.Cell;
-import entity.map.GameField;
 import entity.organism.Organism;
 import entity.organism.animal.Animal;
-import entity.organism.animal.herbivore.Horse;
 import enum_list.EnumList;
 
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Bear extends Predator implements Runnable {
-    public static final String ICON = "🐻";
-    public static final int PROP_BOA = 80;
-    public static final int PROP_HORSE = 40;
-    public static final int PROP_DEER = 80;
-    public static final int PROP_RABBIT = 80;
-    public static final int PROP_MOUSE = 90;
-    public static final int PROP_GOAT = 70;
-    public static final int PROP_SHEEP = 70;
-    public static final int PROP_DUCK = 10;
-    public static final int PROP_BOAR = 50;
-    public static final int PROP_BUFFALO = 20;
+public class Wolf extends Predator implements Runnable {
+    public static final String ICON = "\uD83D\uDC3A";
     private static float food = 0;
-
+    public static final int PROP_HORSE = 10;
+    public static final int PROP_SHEEP = 70;
+    public static final int PROP_DEER = 15;
+    public static final int PROP_RABBIT = 60;
+    public static final int PROP_MOUSE = 80;
+    public static final int PROP_GOAT = 60;
+    public static final int PROP_BOAR = 15;
+    public static final int PROP_BUFFALO = 10;
+    public static final int PROP_DUCK = 40;
 
     @Override
     public String getIcon() {
@@ -32,17 +26,10 @@ public class Bear extends Predator implements Runnable {
     }
 
     @Override
-    public Animal createNewAnimal() {
-        return new Bear(EnumList.BEAR);
-    }
-
     public void eat(Organism org, Cell cell) {
         int number = ThreadLocalRandom.current().nextInt(0, 101);
         if (food <= FULL_EAT) {
             if (number <= PROP_HORSE && org.getModel() == EnumList.HORSE) {
-                food += org.getWeight();
-                removeFromCell(org, cell);
-            } else if (number <= PROP_BOA && org.getModel() == EnumList.BOA) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
             } else if (number <= PROP_DEER && org.getModel() == EnumList.DEER) {
@@ -57,26 +44,33 @@ public class Bear extends Predator implements Runnable {
             } else if (number <= PROP_GOAT && org.getModel() == EnumList.GOAT) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            } else if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
-                food += org.getWeight();
-                removeFromCell(org, cell);
             } else if (number <= PROP_BOAR && org.getModel() == EnumList.BOAR) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
             } else if (number <= PROP_BUFFALO && org.getModel() == EnumList.BUFFALO) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
+            } else if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
+            } else if (number <= PROP_SHEEP && org.getModel() == EnumList.SHEEP) {
+                food += org.getWeight();
+                removeFromCell(org, cell);
             }
         }
     }
 
-    public Bear(EnumList model) {
+    public Wolf(EnumList model) {
         super(model);
-        this.maxStep = 2;
-        this.cellAmount = 5;
-        this.weight = 500;
-        this.FULL_EAT = 80;
+        this.maxStep = 3;
+        this.cellAmount = 30;
+        this.weight = 50;
+        this.FULL_EAT = 8;
+    }
+
+    @Override
+    public Animal createNewAnimal() {
+        return new Wolf(EnumList.WOLF);
     }
 }
-
 
