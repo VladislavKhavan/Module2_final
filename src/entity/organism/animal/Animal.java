@@ -58,7 +58,7 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
 
         int newX = Math.max(0, Math.min(field.getWidth() - 1, currentX + moveX));
         int newY = Math.max(0, Math.min(field.getHeight() - 1, currentY + moveY));
-        if(cellAmount > field.countAnimalInCell(newX, newY, this.getModel())) {
+        if (cellAmount > field.countAnimalInCell(newX, newY, this.getModel())) {
             moveOrganism(this, newX, newY);
             this.setX(newX);
             this.setY(newY);
@@ -66,16 +66,18 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
             this.reproduce(this);
         }
     }
-    public void reproduce(Animal animal){
+
+    public void reproduce(Animal animal) {
         int currentX = this.getX();
         int currentY = this.getY();
 
         Cell cell = field.getCell(currentX, currentY);
-        if(cell.countAnimalByType(this.getModel()) > 1){
+        if (cell.countAnimalByType(this.getModel()) > 1) {
             Animal newAnimal = this.createNewAnimal();
             cell.addOrganism(newAnimal);
         }
     }
+
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             try {

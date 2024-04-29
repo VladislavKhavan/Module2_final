@@ -12,8 +12,8 @@ public class Deer extends Herbivore implements Runnable {
     private static float food = 0;
 
     @Override
-    public void eat(Organism organism, Cell cell){
-        if(food <= FULL_EAT){
+    public void eat(Organism organism, Cell cell) {
+        if (food <= FULL_EAT) {
             food += Grass.weight;
             removeFromCell(organism, cell);
         }

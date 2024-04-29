@@ -27,16 +27,13 @@ public class Boa extends Predator implements Runnable {
             if (number <= PROP_FOX && org.getModel() == EnumList.FOX) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT){
+            } else if (number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE){
+            } else if (number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_DUCK && org.getModel() == EnumList.DUCK){
+            } else if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
                 food = org.getWeight();
                 removeFromCell(org, cell);
             }

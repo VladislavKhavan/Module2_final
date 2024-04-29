@@ -8,13 +8,9 @@ import game_simulation.GameSimulation;
 
 public class Main {
     public static void main(String[] args) {
-
-            GameSimulation simulation = new GameSimulation();
-            simulation.startSimulation();
-
-        }
-
-
+        GameSimulation simulation = new GameSimulation();
+        simulation.startSimulation();
     }
+}
 
 
