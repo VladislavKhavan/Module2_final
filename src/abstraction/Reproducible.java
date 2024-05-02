@@ -6,3 +6,4 @@ import entity.organism.animal.Animal;
 public interface Reproducible {
     void reproduce(Animal animal);
 }
+

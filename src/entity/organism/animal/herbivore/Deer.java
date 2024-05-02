@@ -32,6 +32,7 @@ public class Deer extends Herbivore implements Runnable {
         this.FULL_EAT = 50;
     }
 
+
     @Override
     public Animal createNewAnimal() {
         return new Deer(EnumList.DEER);

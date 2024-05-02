@@ -23,6 +23,7 @@ public class Mouse extends Herbivore implements Runnable {
             } else if (org.getModel() == EnumList.GRASS) {
                 food = Grass.weight;
                 removeFromCell(org, cell);
+
             }
         }
     }

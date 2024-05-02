@@ -9,3 +9,4 @@ import java.lang.reflect.Field;
 public interface Movable {
     void move();
 }
+

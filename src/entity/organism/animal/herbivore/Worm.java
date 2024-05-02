@@ -18,6 +18,7 @@ public class Worm extends Herbivore implements Runnable {
         }
     }
 
+
     @Override
     public String getIcon() {
         return ICON;

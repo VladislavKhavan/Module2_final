@@ -11,6 +11,7 @@ public class Main {
         GameSimulation simulation = new GameSimulation();
         simulation.startSimulation();
     }
+
 }
 
 

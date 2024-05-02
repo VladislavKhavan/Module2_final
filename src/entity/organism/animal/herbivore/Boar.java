@@ -23,6 +23,7 @@ public class Boar extends Herbivore implements Runnable {
 
     @Override
     public void eat(Organism org, Cell cell) {
+
         int number = ThreadLocalRandom.current().nextInt(0, 101);
         if (food <= FULL_EAT) {
             if (number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE) {

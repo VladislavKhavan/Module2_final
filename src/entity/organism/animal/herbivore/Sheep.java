@@ -24,6 +24,7 @@ public class Sheep extends Herbivore implements Runnable {
         return ICON;
     }
 
+
     public Sheep(EnumList model) {
         super(model);
         this.maxStep = 3;

@@ -23,6 +23,7 @@ public class Rabbit extends Herbivore implements Runnable {
         return ICON;
     }
 
+
     public Rabbit(EnumList model) {
         super(model);
         this.maxStep = 2;

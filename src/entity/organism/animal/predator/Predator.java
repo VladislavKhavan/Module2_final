@@ -19,6 +19,7 @@ public abstract class Predator extends Animal {
         GameSimulation.removeAnimal((Animal) organism);
     }
 
+
     public void eat() {
         int currentX = this.getX();
         int currentY = this.getY();

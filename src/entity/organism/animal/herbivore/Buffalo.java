@@ -24,6 +24,7 @@ public class Buffalo extends Herbivore implements Runnable {
             food += Grass.weight;
             removeFromCell(organism, cell);
         }
+
     }
 
     public Buffalo(EnumList model) {

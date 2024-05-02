@@ -31,6 +31,7 @@ public class Goat extends Herbivore implements Runnable {
         this.FULL_EAT = 10;
     }
 
+
     @Override
     public Animal createNewAnimal() {
         return new Goat(EnumList.GOAT);

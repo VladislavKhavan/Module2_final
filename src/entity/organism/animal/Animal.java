@@ -17,6 +17,7 @@ public abstract class Animal extends Organism implements Movable, Reproducible, 
 
     public abstract Animal createNewAnimal();
 
+
     public abstract void eat(Organism herbivore, Cell cell);
 
     public void setField(GameField field) {

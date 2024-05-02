@@ -14,6 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static enum_list.EnumList.*;
 
 
+
 public class Cell {
     private final ConcurrentHashMap<EnumList, Set<Organism>> residents;
     private GameField field;
