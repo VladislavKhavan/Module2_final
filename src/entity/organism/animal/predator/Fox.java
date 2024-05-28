@@ -21,6 +21,7 @@ public class Fox extends Predator implements Runnable {
         return ICON;
     }
 
+
     @Override
     public void eat(Organism org, Cell cell) {
         int number = ThreadLocalRandom.current().nextInt(0, 101);
@@ -28,16 +29,13 @@ public class Fox extends Predator implements Runnable {
             if (number <= PROP_DUCK && org.getModel() == EnumList.DUCK) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_WORM && org.getModel() == EnumList.WORM){
+            } else if (number <= PROP_WORM && org.getModel() == EnumList.WORM) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE){
+            } else if (number <= PROP_MOUSE && org.getModel() == EnumList.MOUSE) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
-            }
-            else if(number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT){
+            } else if (number <= PROP_RABBIT && org.getModel() == EnumList.RABBIT) {
                 food += org.getWeight();
                 removeFromCell(org, cell);
             }

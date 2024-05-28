@@ -11,8 +11,8 @@ public class Goat extends Herbivore implements Runnable {
     private static float food = 0;
 
     @Override
-    public void eat(Organism organism, Cell cell){
-        if(food <= FULL_EAT){
+    public void eat(Organism organism, Cell cell) {
+        if (food <= FULL_EAT) {
             food += Grass.weight;
             removeFromCell(organism, cell);
         }
@@ -30,6 +30,7 @@ public class Goat extends Herbivore implements Runnable {
         this.weight = 60;
         this.FULL_EAT = 10;
     }
+
 
     @Override
     public Animal createNewAnimal() {

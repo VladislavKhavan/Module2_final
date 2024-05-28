@@ -80,3 +80,4 @@ public class Bear extends Predator implements Runnable {
 }
 
 
+

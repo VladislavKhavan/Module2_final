@@ -68,6 +68,7 @@ public class Wolf extends Predator implements Runnable {
         this.FULL_EAT = 8;
     }
 
+
     @Override
     public Animal createNewAnimal() {
         return new Wolf(EnumList.WOLF);

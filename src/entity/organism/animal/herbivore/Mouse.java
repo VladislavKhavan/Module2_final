@@ -14,16 +14,16 @@ public class Mouse extends Herbivore implements Runnable {
     private static int food = 0;
 
     @Override
-    public void eat(Organism org, Cell cell){
+    public void eat(Organism org, Cell cell) {
         int number = ThreadLocalRandom.current().nextInt(0, 101);
-        if(food <= FULL_EAT) {
+        if (food <= FULL_EAT) {
             if (number <= PROP_WORM && org.getModel() == EnumList.WORM) {
                 food += org.getWeight();
                 removeFromCellA(org, cell);
-            }
-            else if(org.getModel() == EnumList.GRASS){
+            } else if (org.getModel() == EnumList.GRASS) {
                 food = Grass.weight;
                 removeFromCell(org, cell);
+
             }
         }
     }

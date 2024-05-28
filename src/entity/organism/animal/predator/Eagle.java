@@ -22,6 +22,7 @@ public class Eagle extends Predator implements Runnable {
         return ICON;
     }
 
+
     @Override
     public void eat(Organism org, Cell cell) {
         int number = ThreadLocalRandom.current().nextInt(0, 101);

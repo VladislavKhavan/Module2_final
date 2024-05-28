@@ -21,6 +21,7 @@ public class Duck extends Herbivore implements Runnable {
                 food += org.getWeight();
                 removeFromCellA(org, cell);
             }
+
             else if(org.getModel() == EnumList.GRASS) {
                 food += Grass.weight;
                 removeFromCell(org, cell);

@@ -8,3 +8,4 @@ public abstract class Plant extends Organism {
         super(model);
     }
 }
+
